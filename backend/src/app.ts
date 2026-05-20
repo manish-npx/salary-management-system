@@ -4,6 +4,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import { errorHandler } from "./middleware/errorHandler";
 import { employeeRoutes } from "./routes/employeeRoutes";
+import { salaryInsightRoutes } from "./routes/salaryInsightRoutes";
 
 export const app = express();
 
@@ -17,4 +18,5 @@ app.get("/api/health", (_request, response) => {
 });
 
 app.use("/api/employees", employeeRoutes);
+app.use("/api/insights", salaryInsightRoutes);
 app.use(errorHandler);
