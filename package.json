@@ -1,0 +1,23 @@
+{
+  "name": "salary-management-system",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "npm run test --workspaces --if-present",
+    "test:backend": "npm run test -w backend",
+    "test:frontend": "npm run test -w frontend",
+    "dev:backend": "npm run dev -w backend",
+    "dev:frontend": "npm run dev -w frontend",
+    "build": "npm run build --workspaces --if-present",
+    "prisma:migrate": "npm run prisma:migrate -w backend",
+    "seed": "npm run seed -w backend"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "description": "Production-quality salary management system built with Node, Express, Prisma, React, and TDD."
+}
