@@ -4,6 +4,8 @@
 
 SQLite keeps setup simple and is appropriate for this assignment. For a larger multi-user production deployment, PostgreSQL would be a natural upgrade for concurrency, richer analytics, and operational tooling.
 
+The checked-in Prisma migration documents the schema and indexes. In this local Windows environment, Prisma's migration engine returned an opaque schema-engine error, so the npm setup script uses `prisma db push` for reliable local schema synchronization.
+
 ## Salary Distribution
 
 Distribution buckets are intentionally simple and global. A future version could use currency-normalized ranges or country-specific salary bands.

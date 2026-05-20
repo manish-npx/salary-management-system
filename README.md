@@ -40,7 +40,7 @@ The backend includes repository, service, and API integration tests. The fronten
 
 - Controllers handle HTTP only; services own business behavior; repositories own Prisma access.
 - Employee listing is server-side paginated and filtered to avoid loading all 10,000 rows in the browser.
-- SQLite indexes are added for `country`, `jobTitle`, and `salary`.
+- SQLite indexes are added for `country`, `jobTitle`, and `salary`; the SQL migration is checked into `backend/prisma/migrations`.
 - Seed data is generated deterministically and inserted in batches inside a transaction.
 
 See the `docs` folder for details on architecture, TDD workflow, tradeoffs, and AI usage.
