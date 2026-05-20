@@ -1,6 +1,11 @@
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import { EmployeeTable } from "./components/employees/EmployeeTable";
-import type { Employee } from "./types/employee";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState } from "react";
+import { AppLayout } from "./layouts/AppLayout";
+import type { AppView } from "./layouts/AppLayout";
+import { DashboardPage } from "./pages/DashboardPage";
+import { EmployeesPage } from "./pages/EmployeesPage";
+import { InsightsPage } from "./pages/InsightsPage";
 
 const theme = createTheme({
   palette: {
@@ -14,23 +19,21 @@ const theme = createTheme({
   }
 });
 
-const sampleEmployees: Employee[] = [];
+const queryClient = new QueryClient();
 
-export const App = () => (
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    <EmployeeTable
-      employees={sampleEmployees}
-      total={0}
-      page={1}
-      limit={20}
-      filters={{ search: "", country: "", jobTitle: "" }}
-      sort={{ sortBy: "createdAt", order: "desc" }}
-      onFiltersChange={() => undefined}
-      onPageChange={() => undefined}
-      onSortChange={() => undefined}
-      onEdit={() => undefined}
-      onDelete={() => undefined}
-    />
-  </ThemeProvider>
-);
+export const App = () => {
+  const [activeView, setActiveView] = useState<AppView>("dashboard");
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <AppLayout activeView={activeView} onViewChange={setActiveView}>
+          {activeView === "dashboard" ? <DashboardPage /> : null}
+          {activeView === "employees" ? <EmployeesPage /> : null}
+          {activeView === "insights" ? <InsightsPage /> : null}
+        </AppLayout>
+      </ThemeProvider>
+    </QueryClientProvider>
+  );
+};
